@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Assignments</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #00509e;
+        }
+        .modtype_assignments {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .modtype_assign {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+        .modtype_assign:hover {
+            transform: translateY(-5px);
+        }
+        .instancename {
+            font-weight: bold;
+            font-size: 18px;
+            color: #004085;
+        }
+        .deadline {
+            color: #e63946;
+            margin-top: 5px;
+        }
+        .topic {
+            margin-top: 10px;
+            font-style: italic;
+            color: #6c757d;
+        }
+        .no-assignment {
+            color: #dc3545;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách bài tập trên LMS</h1>
+    <div class="modtype_assignments">
+        <div class="modtype_assign">
+            <div class="instancename">Bài tập 1</div>
+            <div class="deadline">2024-11-20</div>
+            <div class="topic">Chủ đề 1: Giới thiệu</div>
+        </div>
+        <div class="modtype_assign">
+            <div class="topic">Chủ đề 2: Kỹ năng cơ bản</div>
+            <!-- Không có bài tập nào trong chủ đề này -->
+        </div>
+        <div class="modtype_assign">
+            <div class="instancename">Bài tập 3</div>
+            <div class="deadline">2024-11-25</div>
+            <div class="topic">Chủ đề 3: Thực hành nâng cao</div>
+        </div>
+        <div class="modtype_assign">
+            <div class="instancename">Bài tập 4</div>
+            <div class="deadline">2024-11-27</div>
+            <div class="topic">Chủ đề 4: Ứng dụng</div>
+        </div>
+        <div class="modtype_assign">
+            <div class="topic">Chủ đề 5: Tài liệu tham khảo</div>
+            <!-- Không có bài tập nào trong chủ đề này -->
+        </div>
+    </div>
+
+    <script>
+        // a) In ra bài nộp thứ 5 trên trang LMS của môn học
+        $(".modtype_assign").each(function(index, value) {
+            if (index === 4) { // index 4 là bài tập thứ 5 (đếm từ 0)
+                console.log("Bài nộp thứ 5: " + $(value).find(".instancename").text());
+            }
+        });
+
+        // b) Hiển thị tất cả các chủ đề với thông báo nếu không có bài tập
+        $(".modtype_assign").each(function(index, value) {
+            const topic = $(value).find(".topic").text();
+            const assignment = $(value).find(".instancename").text();
+            const deadline = $(value).find(".deadline").text();
+
+            if (assignment) {
+                console.log(`Chủ đề "${topic}" có bài tập: "${assignment}" với deadline là ${deadline}`);
+            } else {
+                $(value).append('<div class="no-assignment">Không có bài tập</div>');
+                console.log(`Chủ đề "${topic}" không có bài tập`);
+            }
+        });
+    </script>
+</body>
+</html>
